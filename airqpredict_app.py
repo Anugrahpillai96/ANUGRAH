@@ -1,10 +1,17 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
+
+# Get the current script directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Load the pre-trained model and DataFrame
-delaq = pd.read_pickle('delaq.pkl')
-PM_predictor = pickle.load(open('PM_predictor.pkl', 'rb'))
+delaq_path = os.path.join(script_dir, 'delaq.pkl')
+PM_predictor_path = os.path.join(script_dir, 'PM_predictor.pkl')
+
+delaq = pd.read_pickle(delaq_path)
+PM_predictor = pickle.load(open(PM_predictor_path, 'rb'))
 
 # Streamlit app
 st.title('Particulate Matter Concentration Prediction App')
